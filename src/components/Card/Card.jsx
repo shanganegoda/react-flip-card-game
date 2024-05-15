@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Card.css'
 
-function Card({ word }) {
+function Card({ word , onClick}) {
 
     const [flipped , setFlipped] = useState(false);
 
@@ -10,7 +10,7 @@ function Card({ word }) {
     }
 
     return (
-        <div className={`card ${flipped ? "flipped" : "" }`} onClick={handleFlip}>
+        <div className={`card ${flipped ? "flipped" : "" }`}>
             <div className="inner">
                 <div className="front">
                     

@@ -1,63 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from './components/Card/Card';
 import './App.css'
 
-let cardArray = new Array(8).fill(1);
-// const wordsArray = ["Star" , "Flag" , "China" , "Red" , "Flag" ,  "Star" ,  "Red" , "China"]
-const wordsArray = [
-{
-  word : "Star",
-  found : false
-},
-{
-  word : "Flag",
-  found : false
-},
-{
-  word : "China",
-  found : false
-},
-{
-  word : "Red",
-  found : false
-},
-{
-  word : "Flag",
-  found : false
-},
-{
-  word : "Star",
-  found : false
-},
-{
-  word : "Red",
-  found : false
-},
-{
-  word : "China",
-  found : false
-},
-]
-// let count = 0;
 
-// cardArray.forEach((_, i) => {
-//   count ++;
-//   cardArray[i] = count;
-// });
-
-cardArray = [...wordsArray]
-
-console.log(cardArray)
-
-const handleClick = () => {
-  
-}
 
 function App() {
+
+const [wordsArray , setWordsArray] = useState(["Star","Flag","China","Red","Flag","Star","Red","China"]);
+
+const handleClick = i => {
+  console.log("clickedS")
+  setWordsArray((currentArray) => {
+    const obj = {...currentArray[i] , flipped : true }
+    const tempArray = currentArray.filter((_,index) => index != i)
+    console.log(tempArray)
+    return currentArray
+  })
+  // wordsArray[index].flipped =  !wordsArray[index].flipped
+}
+
+console.log(wordsArray)
+
   return (
     <div className='home'>
       <div className="cardlist">
-        {cardArray.map((obj,i) => <Card key={i} word={obj.word} onClick={() => handleClick()}/>)}
+        {wordsArray.map((obj,i) => <div key={i} onClick={() => handleClick(i)}>
+          <p>{obj.flipped ? "sds" : "ASdas"}</p>
+          <Card  word={obj.word} flipped={obj.flipped} />
+          </div>)
+          }
       </div>
     </div>
   )
